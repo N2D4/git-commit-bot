@@ -9,7 +9,7 @@ const exec = (...args) => {
 }
 
 const token = process.env.TOKEN;
-const chatId = process.env.CHAT_ID;
+const chatId = +process.env.CHAT_ID;
 const gitURL = process.env.GIT_URL;
 const gitBranch = process.env.GIT_BRANCH;
 const fetchIntervalSeconds = +process.env.FETCH_INTERVAL_SECONDS;
@@ -17,10 +17,10 @@ const authorReplacements = JSON.parse(process.env.AUTHOR_REPLACEMENTS);
 
 const bot = new TelegramBot(token, {polling: true});
 bot.onText(/.*/, async (msg, match) => {
-    if (+chatId !== msg.chat.id) {
+    if (chatId !== msg.chat.id) {
         await bot.sendMessage(msg.chat.id, `This bot is for a specific chat (your chat ID: ${msg.chat.id})`);
     } else {
-        if (msg.text === "/stop") {
+        if (msg.text.startsWith("/stop")) {
             await bot.sendMessage(msg.chat.id, `Stopping the bot.`);
             await wait(5000);
             process.exit(0);
