@@ -16,7 +16,7 @@ const fetchIntervalSeconds = +process.env.FETCH_INTERVAL_SECONDS;
 const authorReplacements = JSON.parse(process.env.AUTHOR_REPLACEMENTS);
 
 const bot = new TelegramBot(token, {polling: true});
-bot.onText(/.*/, (msg, match) => {
+bot.onText(/.*/, async (msg, match) => {
     if (+chatId !== msg.chat.id) {
         await bot.sendMessage(msg.chat.id, `This bot is for a specific chat (your chat ID: ${msg.chat.id})`);
     } else {
