@@ -34,7 +34,7 @@ async function main() {
             await wait(fetchIntervalSeconds * 1000);
             console.log();
             console.log("Syncing Git repo");
-            console.log(`Fetched repo`, await exec(`cd ./tmpdata && git fetch --all`));
+            console.log(`Fetched repo`, await exec(`cd ./tmpdata && git fetch origin ${gitBranch}:${gitBranch}`));
             const result = await exec(`cd ./tmpdata && git log ${lastCommit}..HEAD -- origin/${gitBranch}`);
             console.log(`New commits:`, result);
 
