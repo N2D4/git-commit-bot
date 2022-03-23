@@ -50,7 +50,8 @@ async function main() {
                 bot.sendMessage(chatId, resstr, { parse_mode: "Markdown" });
             }
 
-            lastCommit = result.stdout.match(/commit ([0-9a-f]+)\n/)[1];
+            let recentCommit = result.stdout.match(/commit ([0-9a-f]+)\n/)?.[1];
+            if (recentCommit) lastCommit = recentCommit;
             console.log("Most recent commit:", lastCommit);
         }
     } finally {
