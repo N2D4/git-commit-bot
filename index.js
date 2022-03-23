@@ -17,8 +17,14 @@ const authorReplacements = JSON.parse(process.env.AUTHOR_REPLACEMENTS);
 
 const bot = new TelegramBot(token, {polling: true});
 bot.onText(/.*/, (msg, match) => {
-    if (chatId !== msg.chat.id) {
-        bot.sendMessage(msg.chat.id, `This bot is for a specific chat (your chat ID: ${msg.chat.id})`);
+    if (+chatId !== msg.chat.id) {
+        await bot.sendMessage(msg.chat.id, `This bot is for a specific chat (your chat ID: ${msg.chat.id})`);
+    } else {
+        if (msg.text === "/stop") {
+            await bot.sendMessage(msg.chat.id, `Stopping the bot.`);
+            await wait(5000);
+            process.exit(0);
+        }
     }
 })
 
