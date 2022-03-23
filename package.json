@@ -1,0 +1,22 @@
+{
+  "name": "git-commit-bot",
+  "version": "1.0.0",
+  "description": "A script that fetches a Git repo and sends a Telegram bot message about any new commits",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/N2D4/git-commit-bot.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/N2D4/git-commit-bot/issues"
+  },
+  "homepage": "https://github.com/N2D4/git-commit-bot#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "node-telegram-bot-api": "^0.56.0"
+  }
+}
