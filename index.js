@@ -52,7 +52,7 @@ async function main() {
 
             let recentCommit = result.stdout.match(/commit ([0-9a-f]+)\n/)?.[1];
             if (recentCommit) lastCommit = recentCommit;
-            console.log("Most recent commit:", lastCommit);
+            console.log("Last commit:", lastCommit, `(from recent: ${recentCommit})`);
         }
     } finally {
         fs.rmdirSync("./tmpdata", { recursive: true, force: true });
